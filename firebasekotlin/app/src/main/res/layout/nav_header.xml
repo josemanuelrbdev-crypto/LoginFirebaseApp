@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="#3F51B5"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="16dp">
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@android:drawable/sym_def_app_icon" />
+    <TextView
+        android:id="@+id/tvNavNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre Usuario"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvNavCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="usuario@correo.com"
+        android:textColor="#D1D1D1"
+        android:textSize="12sp" />
+</LinearLayout>
