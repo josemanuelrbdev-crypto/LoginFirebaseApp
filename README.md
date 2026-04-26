@@ -31,7 +31,8 @@ Este repositorio contiene una aplicación de Android desarrollada en **Kotlin** 
 <img width="286" height="554" alt="image" src="https://github.com/user-attachments/assets/37c642e3-e0fa-4d2f-a94a-98779d4fd40b" />
 
 
-
+## Link para descargar el APK
+https://josemanuelrbdev-crypto.github.io/LoginFirebaseApp/
 
 
 
@@ -43,7 +44,7 @@ Para ejecutar este proyecto localmente, sigue estos pasos:
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone [https://github.com/tu-usuario/LoginFirebaseApp.git](https://github.com/tu-usuario/LoginFirebaseApp.git)
+   [(git clone https://github.com/josemanuelrbdev-crypto/LoginFirebaseApp.git)]
    
 2. Configurar Firebase:
 
