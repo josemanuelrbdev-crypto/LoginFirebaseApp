@@ -40,29 +40,44 @@ https://josemanuelrbdev-crypto.github.io/LoginFirebaseApp/
 
 ## ⚙️ Instalación y Configuración
 
-Para ejecutar este proyecto localmente, sigue estos pasos:
+🚀 Guía de Ejecución Local
+Para poner en marcha StockMaster en tu entorno de desarrollo, sigue estos pasos:
 
-1. **Clonar el repositorio:**
-   ```bash
-   git clone https://github.com/josemanuelrbdev-crypto/LoginFirebaseApp.git
-   
-2. Configurar Firebase:
+1. Clonar el Repositorio
+Copia el proyecto a tu máquina local usando la terminal:
 
-    Crea un proyecto en Firebase Console.
-    
-    Añade una aplicación Android con el nombre de paquete del proyecto.
-    
-    Descarga el archivo google-services.json y colócalo en el directorio app/ de tu proyecto.
-    
-    Habilita Email/Password en la sección de Authentication de Firebase.
+Bash
+git clone https://github.com/josemanuelrbdev-crypto/LoginFirebaseApp.git
+2. Configurar Firebase 🔥
+Este proyecto utiliza servicios de Firebase, por lo que necesitarás vincular tu propia instancia:
 
-3. Compilar y Ejecutar:
+Crea un nuevo proyecto en Firebase Console.
 
-    Abre el proyecto en Android Studio.
-    
-    Sincroniza los archivos de Gradle.
-    
-    Ejecuta la app en un emulador o dispositivo físico.
+Añade una aplicación Android. Asegúrate de usar el nombre de paquete exacto que definiste en el código.
+
+Descarga el archivo google-services.json y muévelo a la carpeta /app del proyecto clonado.
+
+En la consola de Firebase, activa los siguientes servicios:
+
+Authentication: Habilita el método Email/Password.
+
+Cloud Firestore: Crea la base de datos (puedes usar el "Modo de prueba" para empezar rápido).
+
+3. Estructura de Datos (Firestore)
+Para que el inventario se visualice correctamente, la base de datos debe tener esta estructura:
+
+Colección: inventario
+
+Campos: name (String), price (Number), stock (Number).
+
+Colección: usuarios (Para perfiles).
+
+4. Compilar y Ejecutar 🛠️
+Abre la carpeta del proyecto en Android Studio.
+
+Haz clic en el botón de Sync Project with Gradle Files (icono del elefante).
+
+Una vez finalizada la sincronización, presiona Run (flecha verde) para desplegar en un emulador o dispositivo físico.
 
 📂 Estructura del Proyecto
     firebasekotlin/: Contiene la lógica principal de la aplicación, actividades y adaptadores.
