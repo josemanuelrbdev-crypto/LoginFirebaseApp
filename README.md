@@ -46,8 +46,11 @@ Para poner en marcha StockMaster en tu entorno de desarrollo, sigue estos pasos:
 1. Clonar el Repositorio
 Copia el proyecto a tu máquina local usando la terminal:
 
+
 Bash
+
 git clone https://github.com/josemanuelrbdev-crypto/LoginFirebaseApp.git
+
 2. Configurar Firebase 🔥
 Este proyecto utiliza servicios de Firebase, por lo que necesitarás vincular tu propia instancia:
 
