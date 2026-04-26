@@ -44,7 +44,7 @@ Para ejecutar este proyecto localmente, sigue estos pasos:
 
 1. **Clonar el repositorio:**
    ```bash
-   [(git clone https://github.com/josemanuelrbdev-crypto/LoginFirebaseApp.git)]
+   git clone https://github.com/josemanuelrbdev-crypto/LoginFirebaseApp.git
    
 2. Configurar Firebase:
 
