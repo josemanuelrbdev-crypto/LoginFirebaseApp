@@ -23,6 +23,18 @@ Este repositorio contiene una aplicación de Android desarrollada en **Kotlin** 
 <img width="308" height="523" alt="image" src="https://github.com/user-attachments/assets/1e6df7c4-f972-451d-bbe4-c76a1655174e" />
 <img width="298" height="540" alt="image" src="https://github.com/user-attachments/assets/5c756ffa-bf6d-4a98-8950-dd27259a92d8" />
 
+## Nuevo Diseño
+<img width="299" height="553" alt="image" src="https://github.com/user-attachments/assets/e9de026a-63cd-4946-8687-c13b1ee5c6fe" />
+<img width="280" height="548" alt="image" src="https://github.com/user-attachments/assets/4031f6cf-3227-458b-8055-60b8628323b3" />
+<img width="282" height="555" alt="image" src="https://github.com/user-attachments/assets/13365bea-302e-4c32-9f42-9f574cbb4454" />
+<img width="282" height="554" alt="image" src="https://github.com/user-attachments/assets/d2ee5bf5-3913-4aed-9943-0ed90eee9cc6" />
+<img width="286" height="554" alt="image" src="https://github.com/user-attachments/assets/37c642e3-e0fa-4d2f-a94a-98779d4fd40b" />
+
+
+
+
+
+
 
 
 ## ⚙️ Instalación y Configuración
