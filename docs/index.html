@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargar StockMaster</title>
+    <style>
+        /* Variables de color para mantener consistencia */
+        :root {
+            --primary-blue: #1A237E;
+            --android-green: #3DDC84;
+            --bg-light: #f4f4f9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #311B92 100%);
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 24px;
+            max-width: 400px;
+            width: 100%; /* Ocupa el ancho disponible en móviles */
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        img {
+            width: 80px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .btn {
+            background: var(--android-green);
+            color: var(--primary-blue);
+            padding: 18px 30px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            display: block; /* Ocupa todo el ancho en móvil */
+            font-size: 1.1rem;
+            box-shadow: 0 4px 14px rgba(61, 220, 132, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #2ebf6f;
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(61, 220, 132, 0.6);
+        }
+
+        .footer-text {
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        /* MEDIA QUERY PARA MÓVILES PEQUEÑOS */
+        @media (max-width: 480px) {
+            body { padding: 15px; }
+            .card { padding: 30px 15px; }
+            h1 { font-size: 1.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" alt="StockMaster Logo">
+
+    <h1>StockMaster</h1>
+    <p>Gestión de Inventario profesional conectada con Firebase.</p>
+
+    <a href="https://github.com/josemanuelrbdev-crypto/LoginFirebaseApp/releases/download/v1.0.0/StockMaster.apk" class="btn">
+        DESCARGAR APK
+    </a>
+
+    <div class="footer-text">
+        Versión 1.0.1 | Android 8.0+
+    </div>
+</div>
+
+</body>
+</html>
