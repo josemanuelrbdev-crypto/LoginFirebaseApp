@@ -1,10 +1,16 @@
 package com.example.loginfirebaseapp
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -20,31 +26,47 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var drawerLayout: DrawerLayout
 
+    // Variable para la foto del menú lateral
+    private lateinit var imgNavLogo: ImageView
+    private lateinit var pickImageLauncher: ActivityResultLauncher<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // 1. Inicializar Firebase
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        // 2. Referencias de la UI
         drawerLayout = findViewById(R.id.drawerLayout)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         val navigationView = findViewById<NavigationView>(R.id.navigationView)
         val tvUserNombre = findViewById<TextView>(R.id.tvUserNombre)
 
-        // 3. Referencias del Header del Menú Lateral
+        // --- CONFIGURACIÓN DEL HEADER ---
         val headerView: View = navigationView.getHeaderView(0)
         val tvNavNombre = headerView.findViewById<TextView>(R.id.tvNavNombre)
         val tvNavCorreo = headerView.findViewById<TextView>(R.id.tvNavCorreo)
+        imgNavLogo = headerView.findViewById(R.id.imgNavLogo) // ID que pusimos en nav_header.xml
 
-        // 4. Configurar la Hamburguesa para abrir el menú
+        // 1. Inicializar el lanzador para la galería
+        pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            if (uri != null) {
+                // Aquí se pone la imagen seleccionada en el círculo
+                imgNavLogo.setImageURI(uri)
+                Toast.makeText(this, "Foto actualizada", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // 2. Clic en la foto para abrir galería
+        imgNavLogo.setOnClickListener {
+            pickImageLauncher.launch("image/*")
+        }
+
         toolbar.setNavigationOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
-        // 5. Cargar datos del usuario desde Firestore
+        // Cargar datos del usuario
         val userUid = auth.currentUser?.uid
         if (userUid != null) {
             db.collection("usuarios").document(userUid).get()
@@ -52,8 +74,6 @@ class HomeActivity : AppCompatActivity() {
                     if (document.exists()) {
                         val nombre = document.getString("nombre")
                         val correo = document.getString("correo")
-
-                        // Actualizar saludo y menú lateral
                         tvUserNombre.text = "Bienvenido, $nombre"
                         tvNavNombre?.text = nombre
                         tvNavCorreo?.text = correo
@@ -61,7 +81,6 @@ class HomeActivity : AppCompatActivity() {
                 }
         }
 
-        // 6. Clics en el Menú Lateral (Drawer)
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_logout -> {
@@ -69,33 +88,53 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }
-                R.id.nav_profile -> {
-                    Toast.makeText(this, "Perfil presionado desde el menú", Toast.LENGTH_SHORT).show()
-                }
             }
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
 
-        // 7. Clics en las Tarjetas (Cards) del Dashboard
-        val cardPerfil = findViewById<MaterialCardView>(R.id.cardPerfil)
-        val cardAjustes = findViewById<MaterialCardView>(R.id.cardAjustes)
-
-        cardPerfil.setOnClickListener {
-            Toast.makeText(this, "Abriendo tu Perfil...", Toast.LENGTH_SHORT).show()
+        // --- CLICS EN LAS TARJETAS ---
+        findViewById<MaterialCardView>(R.id.cardInventario).setOnClickListener {
+            startActivity(Intent(this, InventarioActivity::class.java))
         }
 
-        cardAjustes.setOnClickListener {
-            Toast.makeText(this, "Abriendo Ajustes...", Toast.LENGTH_SHORT).show()
+        findViewById<MaterialCardView>(R.id.cardAjustes).setOnClickListener {
+            showProductDialog()
         }
     }
 
-    // Cerrar el menú si se presiona el botón "Atrás" del sistema
-    override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
+    // --- DIÁLOGO CRUD (CREAR PRODUCTO) ---
+    private fun showProductDialog() {
+        val builder = AlertDialog.Builder(this)
+        val dialogLayout = layoutInflater.inflate(R.layout.dialog_product, null)
+
+        val etName = dialogLayout.findViewById<EditText>(R.id.etDialogNombre)
+        val etPrice = dialogLayout.findViewById<EditText>(R.id.etDialogPrecio)
+        val etStock = dialogLayout.findViewById<EditText>(R.id.etDialogStock)
+
+        builder.setTitle("Nuevo Producto")
+        builder.setView(dialogLayout)
+        builder.setPositiveButton("Guardar") { _, _ ->
+            val name = etName.text.toString()
+            val price = etPrice.text.toString().toDoubleOrNull() ?: 0.0
+            val stock = etStock.text.toString().toIntOrNull() ?: 0
+
+            if (name.isNotEmpty()) createProduct(name, price, stock)
+            else Toast.makeText(this, "Nombre obligatorio", Toast.LENGTH_SHORT).show()
         }
+        builder.setNegativeButton("Cancelar", null)
+        builder.show()
+    }
+
+    private fun createProduct(name: String, price: Double, stock: Int) {
+        val newProduct = hashMapOf("name" to name, "price" to price, "stock" to stock)
+        db.collection("inventario").add(newProduct)
+            .addOnSuccessListener { Toast.makeText(this, "Agregado", Toast.LENGTH_SHORT).show() }
+            .addOnFailureListener { Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show() }
+    }
+
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START)
+        else super.onBackPressed()
     }
 }

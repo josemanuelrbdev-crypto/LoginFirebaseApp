@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.activity.ktx)
     // Estas vienen del archivo libs.versions.toml (configuración por defecto)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -57,4 +58,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.github.bumptech.glide:glide:4.15.1")
 }

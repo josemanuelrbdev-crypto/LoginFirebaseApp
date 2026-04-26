@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvItemNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre del Producto"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/tvItemPrecio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precio: $0.0"
+                android:textColor="#4CAF50" />
+
+            <TextView
+                android:id="@+id/tvItemStock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Stock: 0"
+                android:gravity="end"
+                android:textColor="#757575" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="💡 Toca para editar • Mantén presionado 2 segundo para eliminar"
+            android:textSize="10sp"
+            android:gravity="end"
+            android:textColor="#BDBDBD"
+            android:layout_marginTop="12dp"
+            android:fontStyle="italic"/>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
